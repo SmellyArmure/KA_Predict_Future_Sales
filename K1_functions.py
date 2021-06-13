@@ -16,7 +16,7 @@ def missing_data(data):
 simple bar plot with shortening label option
 '''
 from matplotlib import colors
-
+import seaborn as sns
 
 def plot_simple_barplot(x, y, x_lab=None, y_lab=None, title=None,
                         shorten_label=15, figsize=(25, 3), color=None,
@@ -98,7 +98,7 @@ import matplotlib.pyplot as plt
 
 
 def plot_barplots(df, cols, figsize=(12, 7), n_cols=3, n_col_limit=15, shorten_label=False,
-                  color='grey', cum_plot=False):
+                  color='grey', cum_plot=False, title=None):
 
     n_tot = len(cols)
     n_rows = (n_tot // n_cols)+((n_tot % n_cols) > 0) * 1
@@ -126,8 +126,11 @@ def plot_barplots(df, cols, figsize=(12, 7), n_cols=3, n_col_limit=15, shorten_l
             ax.plot(np.arange(ser.size), ser.cumsum(), '-or')
 
         plt.xticks(rotation=45, ha='right')
+        
+    if title is not None:
+        plt.suptitle(title, fontsize=16, fontweight='bold')
     plt.tight_layout()
-
+   
     plt.show()
 
 
